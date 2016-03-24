@@ -88,11 +88,6 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionFirst_Row_Header">
-   <property name="text">
-    <string>First Row Header</string>
-   </property>
-  </action>
   <action name="actionFirst_row_as_heading">
    <property name="checkable">
     <bool>true</bool>

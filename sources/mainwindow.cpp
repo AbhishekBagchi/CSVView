@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    model = nullptr;
+
+    setupStatusBar();
 }
 
 MainWindow::~MainWindow()
@@ -22,7 +25,12 @@ void MainWindow::on_actionOpen_triggered()
 {
     fileName = QFileDialog::getOpenFileName(this);
 
-    setupModel(fileName);
+    bool fileRead = readCSVfromFile(fileName);
+
+    if(fileRead == false)
+        return;
+
+    setupModel(ui->actionFirst_row_as_heading->isChecked());
 }
 
 bool MainWindow::readCSVfromFile(QString fileName)
@@ -53,14 +61,32 @@ bool MainWindow::readCSVfromFile(QString fileName)
     return true;
 }
 
-void MainWindow::setupModel(QString fileName)
+void MainWindow::setupModel(bool heading)
 {
-    bool fileRead = readCSVfromFile(fileName);
-
-    if(fileRead == false)
-        return;
-
     model = new TableModel();
+    model->setHeading(heading);
     model->setData(CSVdata);
     ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
+}
+
+void MainWindow::setupStatusBar()
+{
+    statusBarPos = new QLabel;
+    ui->statusBar->addWidget(statusBarPos);
+    ui->statusBar->setLayoutDirection(Qt::RightToLeft);
+}
+
+void MainWindow::on_actionFirst_row_as_heading_toggled(bool arg1)
+{
+    Q_UNUSED(arg1);
+
+    bool heading = ui->actionFirst_row_as_heading->isChecked();
+
+    setupModel(heading);
+}
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    statusBarPos->setText(QString::number(index.row()) + "," + QString::number(index.column()));
 }

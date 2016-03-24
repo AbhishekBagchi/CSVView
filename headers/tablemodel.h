@@ -11,13 +11,16 @@ class TableModel : public QAbstractTableModel
 
 private:
     QList<QStringList> tableData;
+    bool isHeading;
 
 public:
-    //TableModel(QObject* parent = Q_NULLPTR) = default;
     void setData(QList<QStringList> fileData);
+    void setHeading(bool heading);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE ;
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
 };
 
 #endif // TABLEMODEL_H

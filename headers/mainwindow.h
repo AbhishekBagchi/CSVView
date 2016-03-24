@@ -5,17 +5,11 @@
 #include <QString>
 #include <QFileDialog>
 #include <QList>
-#include <QVariant>
+#include <QLabel>
 #include <QFile>
 #include <QMessageBox>
 
-#include <memory>
-
 #include "headers/tablemodel.h"
-
-#ifdef QT_DEBUG
-#include <QDebug>
-#endif
 
 namespace Ui {
 class MainWindow;
@@ -34,6 +28,10 @@ private slots:
 
     void on_actionOpen_triggered();
 
+    void on_actionFirst_row_as_heading_toggled(bool arg1);
+
+    void on_tableView_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 
@@ -41,8 +39,11 @@ private:
     QList<QStringList> CSVdata;
     TableModel* model;
 
+    QLabel *statusBarPos;
+
     bool readCSVfromFile(QString fileName);
-    void setupModel(QString fileName);
+    void setupModel(bool heading = false);
+    void setupStatusBar();
 };
 
 #endif // MAINWINDOW_H
