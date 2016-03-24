@@ -11,7 +11,7 @@
 
 #include <memory>
 
-#include "tablemodel.h"
+#include "headers/tablemodel.h"
 
 #ifdef QT_DEBUG
 #include <QDebug>

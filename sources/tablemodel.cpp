@@ -1,4 +1,4 @@
-#include "tablemodel.h"
+#include "headers/tablemodel.h"
 
 void TableModel::setData(QList<QStringList> fileData)
 {
