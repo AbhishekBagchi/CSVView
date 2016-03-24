@@ -4,10 +4,17 @@
 #include <QMainWindow>
 #include <QString>
 #include <QFileDialog>
+#include <QList>
+#include <QVariant>
+#include <QFile>
+#include <QMessageBox>
+
+#include <memory>
+
+#include "tablemodel.h"
 
 #ifdef QT_DEBUG
 #include <QDebug>
-#include <QMessageBox>
 #endif
 
 namespace Ui {
@@ -31,6 +38,11 @@ private:
     Ui::MainWindow *ui;
 
     QString fileName;
+    QList<QStringList> CSVdata;
+    TableModel* model;
+
+    bool readCSVfromFile(QString fileName);
+    void setupModel(QString fileName);
 };
 
 #endif // MAINWINDOW_H
