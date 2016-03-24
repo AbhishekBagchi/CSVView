@@ -9,6 +9,18 @@ MainWindow::MainWindow(QWidget *parent) :
     model = nullptr;
 
     setupStatusBar();
+
+    QStringList arguments = QApplication::arguments();
+    if(arguments.length() >= 2)
+    {
+        fileName = arguments.at(1);
+        bool fileRead = readCSVfromFile(fileName);
+
+        if(fileRead == false)
+            return;
+
+        setupModel();
+    }
 }
 
 MainWindow::~MainWindow()
