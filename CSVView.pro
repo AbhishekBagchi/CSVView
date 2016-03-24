@@ -11,9 +11,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = CSVView
 TEMPLATE = app
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+CONFIG += C++11
 
-HEADERS  += mainwindow.h
+SOURCES += sources/main.cpp\
+	sources/mainwindow.cpp \
+    sources/tablemodel.cpp
+
+HEADERS  += headers/mainwindow.h \
+    headers/tablemodel.h
 
 FORMS    += mainwindow.ui
