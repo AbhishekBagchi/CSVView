@@ -8,7 +8,7 @@ VERSION = 0.0.1
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CSVView
+TARGET = csvview
 TEMPLATE = app
 
 CONFIG += C++11
