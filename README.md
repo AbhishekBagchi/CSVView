@@ -18,4 +18,5 @@ make
 ```bash
 ./csvview <filename>
 ````
-Or double click on the icon
+
+Or you could just run it by clicking on it.
