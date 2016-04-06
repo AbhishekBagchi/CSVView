@@ -20,7 +20,7 @@ SOURCES += sources/main.cpp\
 HEADERS  += headers/mainwindow.h \
     headers/tablemodel.h
 
-FORMS    += mainwindow.ui
+FORMS    += sources/mainwindow.ui
 
 release: DESTDIR = build/release
 debug:   DESTDIR = build/debug
